@@ -1,39 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import "./Index.css";
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+import MainLayOut from "./layout/MainLayOut";
+import HomePage from "./pages/HomePage";
+import ReservePage from "./pages/ReservePage"
+import MenuPage from "./pages/MenuPage";
 
-import Home from "./pages/Home";
-import Menu from "./pages/Menu";
-import About from "./pages/About";
-import Gallery from "./pages/Gallery";
-import Reserve from "./pages/Reserve";
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<MainLayOut />}>
+      <Route index element={<HomePage />} />
+      <Route path= "/reserve" element={<ReservePage />} />
+      <Route path= "/menu" element={<MenuPage />} />
+    </Route>,
+  ),
+);
 
 function App() {
-  return (
-    <Router>
-      <Navbar />
-
-      <main className="min-h-screen">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/reserve" element={<Reserve />} />
-        </Routes>
-      </main>
-
-      <Footer />
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
-
-
-
-
-
-
-
 
